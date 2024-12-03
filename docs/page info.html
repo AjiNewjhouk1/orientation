@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aji Newjhouk</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .btn {
+            padding: 10px 20px;
+            color: white;
+            background: rgb(12, 198, 250);
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .header, .footer {
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .footer h3 {
+            margin: 0;
+        }
+        #message-personnalise {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        form {
+            text-align: center;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
+        }
+        form input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Bienvenue sur notre site</h1>
+    <div id="message-personnalise"></div> <!-- Message personnalisé -->
+</div>
+
+<div class="article">
+    <article>
+        <!-- Formulaire d'inscription -->
+        <form id="formCoordonnees">
+            <fieldset>
+                <legend>Vos coordonnées :</legend>
+                <input type="text" id="nom" name="nom" placeholder="Nom" required>
+                <input type="text" id="prenom" name="prenom" placeholder="Prénom" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="date" id="date_naissance" name="date_naissance" required>
+                <input type="tel" id="telephone" name="telephone" placeholder="Numéro de téléphone" required>
+                <button type="submit" class="btn">S'inscrire</button>
+            </fieldset>
+        </form>
+
+        <!-- Bouton de connexion -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button id="btnConnexion" class="btn" style="display: none;">Se connecter</button>
+        </div>
+    </article>
+</div>
+
+<script>
+    // Fonction pour créer un cookie de session
+    const ajouterCookie = (nom, valeur) => {
+        sessionStorage.setItem(nom, valeur);  // Utilisation de sessionStorage pour une session temporaire
+    };
+
+    // Fonction pour lire un cookie de session
+    const lireCookie = (nom) => {
+        return sessionStorage.getItem(nom); // Lire directement dans sessionStorage
+    };
+
+    // Fonction pour afficher un message personnalisé
+    const afficherMessagePersonnalise = () => {
+        const nom = lireCookie('nom');
+        const prenom = lireCookie('prenom');
+        const messageDiv = document.getElementById('message-personnalise');
+        const form = document.getElementById('formCoordonnees');
+        const btnConnexion = document.getElementById('btnConnexion');
+
+        if (nom && prenom) {
+            messageDiv.textContent = `Bonjour, ${prenom} ${nom} ! Bienvenue de retour.`;
+            form.style.display = 'none'; // Cache le formulaire
+            btnConnexion.style.display = 'block'; // Affiche le bouton de connexion
+        } else {
+            messageDiv.textContent = "Bonjour, invité ! Veuillez remplir vos coordonnées.";
+            btnConnexion.style.display = 'none'; // Cache le bouton de connexion
+        }
+    };
+
+    // Gestionnaire de soumission du formulaire
+    document.getElementById('formCoordonnees').addEventListener('submit', (e) => {
+        e.preventDefault(); // Empêche le rechargement de la page
+
+        // Récupérer les valeurs des champs
+        const nom = document.getElementById('nom').value;
+        const prenom = document.getElementById('prenom').value;
+        const email = document.getElementById('email').value;
+        const date_naissance = document.getElementById('date_naissance').value;
+        const telephone = document.getElementById('telephone').value;
+
+        // Ajouter les données à sessionStorage
+        ajouterCookie('nom', nom);
+        ajouterCookie('prenom', prenom);
+        ajouterCookie('email', email);
+        ajouterCookie('date_naissance', date_naissance);
+        ajouterCookie('telephone', telephone);
+
+        // Afficher le message personnalisé
+        afficherMessagePersonnalise();
+
+        // Rediriger l'utilisateur vers une autre page
+        window.location.href = "INFO.html"; // Remplacer "INFO.html" par l'URL de la page suivante
+    });
+    // Afficher le message dès le chargement de la page
+    afficherMessagePersonnalise();
+    // Gestionnaire du bouton de connexion
+    document.getElementById('btnConnexion').addEventListener('click', () => {
+        // Si les cookies sont présents, rediriger l'utilisateur
+        window.location.href = "INFO.html"; // Remplacer "INFO.html" par l'URL de la page suivante
+    });
+
+
+</script>
+
+<div class="footer">
+    <h3>لا تنتظر الفرصة، بل اصنعها</h3>
+</div>
+
+</body>
+</html>
