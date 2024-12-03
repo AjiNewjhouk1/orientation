@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title> Aji Newjhouk</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="header">
+    <h1>AJI NEWJHOUK</h1>
+ <img  src="logo.jpeg" , style=  " display: flex;
+    justify-content: left;     align-items: center;     height:100px; position: absolute; top:20px;right : 1165px;">
+
+</div>
+
+<div class="topnav">
+    <a href="page info.html">Page d'information</a>
+    <a href="mailto:manarelchannel@gmail.com"  ,  style=" position: absolute; right : 10px">contactez_nous</a>
+<img src = "R.png" , style= "position: absolute ;right: 140px;
+      width: 30px;
+    height: auto; bottom: 470px;">
+</div>
+
+<div class="article">
+   <h2 style="color: #626fe6; text-align: center;">A propos de notre site</h2>
+    <h3>
+        Aji Newjhouk est une plateforme dédiée aux élèves de terminale et aux étudiants de bac+2, visant à les accompagner dans leurs choix académiques. Le site propose une multitude de ressources, notamment des guides d’orientation sur les différentes filières et options post-bac. Les utilisateurs peuvent bénéficier de tests d’intérêts interactifs pour mieux comprendre leurs compétences et aspirations.
+    </h3>
+</div>
+
+<!-- Section des commentaires -->
+<div class="comment-section">
+    <h2>Commentaires</h2>
+    <textarea id="commentInput" placeholder="Ajoutez un commentaire..."></textarea>
+    <button id="addCommentButton">Ajouter</button>
+    <ul id="commentList"></ul>
+</div>
+
+<script>
+    // Corriger les erreurs de script
+    const commentInput = document.getElementById('commentInput');
+    const addCommentButton = document.getElementById('addCommentButton');
+    const commentList = document.getElementById('commentList');
+    
+    addCommentButton.addEventListener('click', () => {
+        const commentText = commentInput.value.trim();
+        if (commentText !== '') {
+            const commentItem = document.createElement('li');
+            commentItem.className = 'comment-item';
+            commentItem.textContent = commentText;
+            commentList.appendChild(commentItem);
+            commentInput.value = '';
+        } else {
+            alert('Veuillez entrer un commentaire avant de soumettre.');
+        }
+    });
+</script>
+
+<div class="footer">
+    <h3>لا تنتظر الفرصة، بل اصنعها</h3>
+</div>
+
+</body>
+</html>
